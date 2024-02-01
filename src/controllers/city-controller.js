@@ -4,7 +4,6 @@ const cityService = new CityService();
 const create = async (req, res) => {
   try {
     const data = req.body;
-    console.log(data);
     const city = await cityService.createCity(data);
     return res.status(201).json({
       data: city,
@@ -20,6 +19,29 @@ const create = async (req, res) => {
       data: {},
       success: false,
       message: "Not able to create a city",
+      err: error,
+    });
+  }
+};
+
+const createBulk = async (req, res) => {
+  try {
+    const data = req.body;
+    const cities = await cityService.createCities(data);
+    return res.status(201).json({
+      data: cities,
+      success: true,
+      message: "Successfully created a cities",
+      err: {},
+    });
+  } catch (error) {
+    console.log(
+      "Something is wrong in controllers directory in city-controller.js"
+    );
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to create a cities",
       err: error,
     });
   }
@@ -120,6 +142,7 @@ const getAll = async (req, res) => {
 
 module.exports = {
   create,
+  createBulk,
   destroy,
   get,
   update,

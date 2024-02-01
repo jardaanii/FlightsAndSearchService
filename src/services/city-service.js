@@ -16,6 +16,18 @@ class CityService {
     }
   }
 
+  async createCities(citiess) {
+    try {
+      const cities = await this.cityRepository.createBulkCities(citiess);
+      return cities;
+    } catch (error) {
+      console.log(
+        "Something is wrong in services directory in city-service.js"
+      );
+      throw { error };
+    }
+  }
+
   async deleteCity(cityId) {
     try {
       const response = await this.cityRepository.deleteCity(cityId);
