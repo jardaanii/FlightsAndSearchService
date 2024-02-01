@@ -88,6 +88,23 @@ class CityRepository {
       return { error };
     }
   }
+
+  async getAllAirports(filterCity) {
+    // filter can be empty also
+    try {
+      const cityId = await City.findOne({
+        where: {
+          name: filterCity,
+        },
+      });
+
+      const cityAirports = await cityId.getAirports();
+      return cityAirports;
+    } catch (error) {
+      console.log("Somthing is wrong in city-repository.js");
+      return { error };
+    }
+  }
 }
 
 module.exports = CityRepository;

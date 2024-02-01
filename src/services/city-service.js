@@ -77,6 +77,19 @@ class CityService {
       throw { error };
     }
   }
+  async getAllCityAirports(filterCity) {
+    try {
+      const cityAirports = await this.cityRepository.getAllAirports(
+        filterCity.name
+      );
+      return cityAirports;
+    } catch (error) {
+      console.log(
+        "Something is wrong in services directory in city-service.js"
+      );
+      throw { error };
+    }
+  }
 }
 
 module.exports = CityService;

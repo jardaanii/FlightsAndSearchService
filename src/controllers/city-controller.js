@@ -140,6 +140,29 @@ const getAll = async (req, res) => {
   }
 };
 
+const getAllAirports = async (req, res) => {
+  try {
+    const cityAirports = await cityService.getAllCityAirports(req.query);
+
+    return res.status(200).json({
+      data: cityAirports,
+      success: true,
+      message: "Successfully fetched all the cities",
+      err: {},
+    });
+  } catch (error) {
+    console.log(
+      "Something is wrong in controllers directory in city-controller.js"
+    );
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to fetch Airports",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   createBulk,
@@ -147,4 +170,5 @@ module.exports = {
   get,
   update,
   getAll,
+  getAllAirports,
 };
