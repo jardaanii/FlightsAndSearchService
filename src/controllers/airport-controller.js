@@ -5,7 +5,7 @@ const airportservice = new AirportService();
 const create = async (req, res) => {
   try {
     const data = req.body;
-    const airport = await airportservice.createAirport(data);
+    const airport = await airportservice.create(data);
     return res.status(201).json({
       data: airport,
       success: true,
@@ -28,7 +28,7 @@ const create = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const airportId = req.params.id;
-    const response = await airportservice.deleteAirport(airportId);
+    const response = await airportservice.destroy(airportId);
     return res.status(201).json({
       data: response,
       success: true,
@@ -92,6 +92,15 @@ const get = async (req, res) => {
       message: "Not able to get the airport",
       err: error,
     });
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+  } catch (error) {
+    console.log(
+      "Something is wrong in controllers directory in airport-controller.js "
+    );
   }
 };
 
